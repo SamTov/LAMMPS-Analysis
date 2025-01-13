@@ -27,6 +27,7 @@ MDSuite module for the computation of the radial distribution function (RDF). An
 describes the probability of finding a particle of species b at a distance r of
 species a.
 """
+
 from __future__ import annotations
 
 import itertools
@@ -113,6 +114,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         Attributes
         ----------
         kwargs: see RunComputation class for all the passed arguments
+
         """
         super().__init__(**kwargs)
 
@@ -188,6 +190,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
                     override the automatic batch size calculation
             use_tf_function : bool
                     If true, tf.function is used in the calculation.
+
         """
         # set args that will affect the computation result
         self.args = Args(
@@ -219,6 +222,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates class attributes if required.
+
         """
         if self.args.stop is None:
             self.args.stop = self.experiment.number_of_configurations - 1
@@ -256,6 +260,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates class attributes.
+
         """
         self.bin_range = [0, self.args.cutoff]
         self.index_list = list(range(len(self.args.species)))
@@ -291,6 +296,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         -------
         names : str
                 Prefix for the saved file
+
         """
         arg_1 = self.args.species[species_tuple[0]]
         arg_2 = self.args.species[species_tuple[1]]
@@ -304,6 +310,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         ----------
         species : str
                 The species tuple of the RDF being studied, e.g. Na_Na
+
         """
         species_scale_factor = 1
         species_split = species.split("_")
@@ -352,6 +359,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the class state with the full RDF for each desired species pair.
+
         """
         # Compute the true RDF for each species combination.
         self.rdf.update(
@@ -389,6 +397,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         -------
         data_out : np.ndarray
                 data_in converted to nm
+
         """
         return (self.experiment.units.length / 1e-9) * data_in
 
@@ -399,6 +408,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the parent class.
+
         """
         if self.batch_size > self.args.number_of_configurations:
             self.batch_size = self.args.number_of_configurations
@@ -491,6 +501,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         rdf : dict
                 Dict of rdf values for each combination of species, e.g.:
                 {'H-O': tf.Tensor(...), 'H-H': ..., 'O-O': ...}
+
         """
         rdf = {
             name: tf.zeros(self.args.number_of_bins, dtype=tf.int32)
@@ -576,6 +587,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         batch_tqdm : bool
                 If true, the main tqdm loop over batches is disabled and only the
                 mini-batch loop will be displayed.
+
         """
         path_list = [
             join_path(item, self.loaded_property.name) for item in self.args.species
@@ -607,6 +619,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         ----------
         dict_a : dict
         dict_b : dict
+
         """
         out = {}
         for key in dict_a:
@@ -631,6 +644,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         number_of_bins : int
         cutoff : float
                 Cutoff to enforce on the distance tensor.
+
         """
         # select the indices that are within the boundaries of the current species /
         # molecule
@@ -728,6 +742,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         -------
         correction : float
                 Correct ideal gas term for the RDF prefactor
+
         """
 
         def _spherical_symmetry(data: np.array) -> np.array:  # TODO make it a property
@@ -738,10 +753,12 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
             ----------
             data : np.array
                     tensor_values on which to operate
+
             Returns
             -------
             function_values : np.array
                     result of the operation
+
             """
             return 4 * np.pi * (data**2)
 
@@ -751,6 +768,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
 
             tensor_values : np.array
                     tensor_values on which to operate
+
             Returns
             -------
             function_values : np.array
@@ -765,6 +783,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
 
             tensor_values : np.array
                     tensor_values on which to operate
+
             Returns
             -------
             function_values : np.array
@@ -786,6 +805,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
         def _piecewise(data: np.array) -> np.array:
             """
             Return a piecewise operation on a set of tensor_values
+
             Parameters
             ----------
             data : np.array
@@ -795,6 +815,7 @@ class RadialDistributionFunction(TrajectoryCalculator, ABC):
             -------
             scaled_data : np.array
                     tensor_values that has been operated on.
+
             """
             # Boundaries on the ideal gsa correction. These go to 73% over half the box
             # size, the most for a cubic box.

@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import os
 
 import pytest
@@ -61,6 +62,7 @@ def test_project(traj_file, true_values, tmp_path, desired_memory):
     Notes
     -----
     Test uncertainty is very high!
+
     """
     with mds.utils.helpers.change_memory_fraction(desired_memory=desired_memory):
         os.chdir(tmp_path)

@@ -91,6 +91,7 @@ class LAMMPSTrajectoryFile(mdsuite.file_io.tabular_text_files.TabularTextFilePro
             example: custom_data_map = {"Reduced_Momentum": ["rp_x", "rp_y", "rp_z"]},
             if the file contains columns labelled as 'rp_{x,y,z}' for the three components
             of the reduced momentum vector
+
         """
         super(LAMMPSTrajectoryFile, self).__init__(
             file_path,
@@ -268,6 +269,7 @@ def extract_properties_from_header(
         A dict of the form
         {'MDSuite_Property_1': [column_indices], 'MDSuite_Property_2': ...}
         Example {'Unwrapped_Positions': [2,3,4], 'Velocities': [5,6,8]}
+
     """
     column_dict_properties = {
         variable: idx for idx, variable in enumerate(header_property_names)

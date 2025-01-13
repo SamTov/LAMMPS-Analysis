@@ -1,4 +1,5 @@
 """MDSuite colours module."""
+
 import dataclasses
 
 

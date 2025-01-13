@@ -25,6 +25,7 @@ Summary
 -------
 Module for the computation of diffusion coefficients using the Green-Kubo approach.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 from typing import Any, List, Union
@@ -60,6 +61,7 @@ class Args:
 class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
     """
     Class for the Green-Kubo diffusion coefficient implementation
+
     Attributes
     ----------
     experiment :  object
@@ -84,6 +86,7 @@ class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
     experiment.run_computation.GreenKuboSelfDiffusionCoefficients(data_range=500,
                                                                   plot=True,
                                                                   correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -94,6 +97,7 @@ class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         super().__init__(**kwargs)
 
@@ -140,6 +144,7 @@ class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
         integration_range : int
                 Range over which to integrate. Default is to integrate over
                 the full data range.
+
         """
         if species is None:
             if molecules:
@@ -187,6 +192,7 @@ class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         vacf = (
             self.experiment.units.length**2
@@ -213,6 +219,7 @@ class GreenKuboDiffusionCoefficients(TrajectoryCalculator, ABC):
         ----------
         data : dict
                 Data loaded from the sql database to be plotted.
+
         """
         for selected_species, val in data.items():
             fig = figure(x_axis_label=self.x_label, y_axis_label=self.y_label)

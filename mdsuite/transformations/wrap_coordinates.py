@@ -46,6 +46,7 @@ class CoordinateWrapper(SingleSpeciesTrafo):
             if True (default): coordinates are wrapped to [-L/2 , L/2]
             if False: coordinates are wrapped to [0 , L],
             where L is the box size.
+
         """
         super(CoordinateWrapper, self).__init__(
             input_properties=[

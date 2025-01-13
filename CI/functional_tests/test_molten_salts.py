@@ -25,6 +25,7 @@ Summary
 -------
 Perform a functional test on two molten salts.
 """
+
 from typing import Tuple
 
 import pytest
@@ -73,6 +74,7 @@ def mdsuite_project(traj_files, tmp_path) -> mds.Project:
     -------
     project: mdsuite.Project
             An MDSuite project to be tested.
+
     """
     project = mds.Project(storage_path=tmp_path.as_posix())
 
@@ -114,6 +116,7 @@ def test_analysis(mdsuite_project):
     -----
     See the link below for similar data for CNs for molten salts.
     https://link.springer.com/article/10.1007/s10800-018-1197-z
+
     """
     NaCl_experiment = mdsuite_project.experiments.NaCl
     KCl_experiment = mdsuite_project.experiments.KCl

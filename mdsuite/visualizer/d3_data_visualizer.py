@@ -25,6 +25,7 @@ Summary
 -------
 Module for the MDSuite 3d visualizer.
 """
+
 import importlib.resources
 import json
 from typing import Union
@@ -59,6 +60,7 @@ class DataVisualizer3D:
                 title of the plot.
         colour_map : np.ndarray
                 A colour map to apply to the data.
+
         """
         self.data = data
         self.title = title
@@ -90,6 +92,7 @@ class DataVisualizer3D:
         Returns
         -------
         Updates the class.
+
         """
         self.app = gui.Application.instance
         self.app.initialize()
@@ -115,6 +118,7 @@ class DataVisualizer3D:
         data : dict
                  A dictionary of data to use for the rendering:
                  e.g. {'colour': (0.7, 0.33, 0.0), 'mass': 0.8)
+
         """
         data = {}
         data_name = "mdsuite.data"
@@ -142,6 +146,7 @@ class DataVisualizer3D:
         Returns
         -------
         Updates the plot.
+
         """
         if type(self.center) is str:
             self._add_single_center()
@@ -171,6 +176,7 @@ class DataVisualizer3D:
         Returns
         -------
         Adds a group of particles to the center.
+
         """
         translation = np.array([0, 0, 0])
         mass = 0.0

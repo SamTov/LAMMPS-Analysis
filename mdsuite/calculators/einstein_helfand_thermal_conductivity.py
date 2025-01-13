@@ -25,6 +25,7 @@ Summary
 -------
 MDSuite module for the computation of thermal conductivity using the Einstein method.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -76,6 +77,7 @@ class EinsteinHelfandThermalConductivity(TrajectoryCalculator, ABC):
     experiment.run.EinsteinHelfandTThermalConductivity(data_range=500,
                                                        plot=True,
                                                        correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -86,6 +88,7 @@ class EinsteinHelfandThermalConductivity(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
             Experiment class to call from
+
         """
         # parse to the experiment class
         super().__init__(**kwargs)
@@ -122,6 +125,7 @@ class EinsteinHelfandThermalConductivity(TrajectoryCalculator, ABC):
                 Data range to use in the analysis.
         correlation_time : int
                 Correlation time to use in the window sampling.
+
         """
         if fit_range == -1:
             fit_range = int(data_range - 1)
@@ -193,6 +197,7 @@ class EinsteinHelfandThermalConductivity(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         msd = tf.math.squared_difference(ensemble, ensemble[None, 0])
 
@@ -201,7 +206,7 @@ class EinsteinHelfandThermalConductivity(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

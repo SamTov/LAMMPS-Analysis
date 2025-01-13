@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import logging
 import operator
 
@@ -55,6 +56,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         ----------
         experiment : Experiment
                 Experiment class from which to read
+
         """
         super().__init__(**kwargs)
         self.post_generation = True
@@ -93,6 +95,7 @@ class NernstEinsteinIonicConductivity(Calculator):
                 Data range to use in the analysis.
         save : bool
                 if true, save the output.
+
         """
         self.update_user_args(plot=plot, save=False, data_range=data_range, export=export)
         self.corrected = corrected
@@ -111,6 +114,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         -------
         tensor_values: dict
                 A dictionary of tensor_values stored in the yaml file
+
         """
         test = self.experiment.export_property_data(
             {"property": "Diffusion_Coefficients"}
@@ -128,6 +132,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         truth_table : list
                 A truth table communication which tensor_values is available for the
                 analysis.
+
         """
         if self._truth_table is None:
             log.warning(
@@ -177,6 +182,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         Returns
         -------
         Nernst-Einstein Ionic conductivity of the experiment in units of S/cm
+
         """
         # evaluate the prefactor
         numerator = self.experiment.number_of_atoms * (elementary_charge**2)
@@ -221,6 +227,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         Returns
         -------
         Corrected Nernst-Einstein ionic conductivity in units of S/cm
+
         """
         # evaluate the prefactor
         numerator = self.experiment.number_of_atoms * (elementary_charge**2)
@@ -328,6 +335,7 @@ class NernstEinsteinIonicConductivity(Calculator):
         Returns
         -------
         Updates the experiment database_path
+
         """
         cne_table = [self.truth_table[0][1], self.truth_table[1][1]]
 

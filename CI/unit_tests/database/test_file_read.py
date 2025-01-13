@@ -1,4 +1,5 @@
 """Test MDSuite file reading."""
+
 import numpy as np
 
 import mdsuite

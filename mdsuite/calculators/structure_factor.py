@@ -23,6 +23,7 @@ Summary
 -------
 Code for the computation of the structure factor.
 """
+
 import logging
 from dataclasses import dataclass
 
@@ -104,6 +105,7 @@ class StructureFactor(Calculator):
     In order to use the structure factor calculator both the masses and the
     charges of each species must be present. If they are not correct, the structure
     factor will not work.
+
     """
 
     volume: float
@@ -119,6 +121,7 @@ class StructureFactor(Calculator):
         ----------
         experiment : class object
                 Class object of the experiment.
+
         """
         super().__init__(**kwargs)
 
@@ -155,6 +158,7 @@ class StructureFactor(Calculator):
                 Method use to compute the weight factors.
         resolution : int (default=700)
                 Resolution of the structure factor.
+
         """
         self.plot = plot
 
@@ -202,6 +206,7 @@ class StructureFactor(Calculator):
         Returns
         -------
         Updates the volume attribute of the class.
+
         """
         volume_si = self.experiment.volume * self.experiment.units.volume
 
@@ -219,6 +224,7 @@ class StructureFactor(Calculator):
         Notes
         -----
         aff -> atomic form factor
+
         """
         for name, species_data in self.species_dict.items():
             # aff -> atomic form factor
@@ -250,6 +256,7 @@ class StructureFactor(Calculator):
         This expands a tensor by use of an outer produce and therefore could
         theoretically result in memory issue for very large radii values over very
         fine fourier grids. In this case, batching can be performed over Q values.
+
         """
         partial_structure_factors = {}
         for pair, pair_data in self.rdf_data.data_dict.items():
@@ -273,6 +280,7 @@ class StructureFactor(Calculator):
         weight_factors : dict
                 A dict of weight factors to be used in the SF computation. There is
                 one weight factor for each pair.
+
         """
         weight_factors = {}
         for pair, pair_data in self.rdf_data.data_dict.items():
@@ -306,6 +314,7 @@ class StructureFactor(Calculator):
         -------
         total_structure_factor : np.ndarray
                 Total structure factor of the system.
+
         """
         structure_factor = np.zeros(self.args.resolution)
         for pair, pair_data in partial_sf.items():

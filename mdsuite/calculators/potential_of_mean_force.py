@@ -26,6 +26,7 @@ Summary
 Module for the computation of the potential of mean force (PMF). The PMF can be used to
 better understand effective bond strength between species of a system.
 """
+
 import logging
 from dataclasses import dataclass
 
@@ -97,6 +98,7 @@ class PotentialOfMeanForce(Calculator):
     --------
     experiment.run_computation.PotentialOfMeanForce(savgol_order = 2,
                                                     savgol_window_length = 17)
+
     """
 
     def __init__(self, **kwargs):
@@ -110,6 +112,7 @@ class PotentialOfMeanForce(Calculator):
         experiments : class object
                         Class object of the experiment.
         load_data : bool
+
         """
         super().__init__(**kwargs)
         self.file_to_study = None
@@ -151,6 +154,7 @@ class PotentialOfMeanForce(Calculator):
                 Window length of the savgol filter.
         number_of_shells : int
                 Number of shells to integrate through.
+
         """
         if isinstance(rdf_data, Computation):
             self.rdf_data = rdf_data
@@ -195,6 +199,7 @@ class PotentialOfMeanForce(Calculator):
         -----
         Units here are always eV as the data stored in the RDF is constant independent
         of what was in the simulation.
+
         """
         pomf = -1 * boltzmann_constant * self.experiment.temperature * np.log(rdf)
 
@@ -210,6 +215,7 @@ class PotentialOfMeanForce(Calculator):
                 The data range used in the RDF calculation.
         cutoff : float
                 The cutoff (in nm) used in the RDF calculation
+
         """
         raw_data = self.rdf_data.data_dict
         keys = list(raw_data)
@@ -236,6 +242,7 @@ class PotentialOfMeanForce(Calculator):
         ------
         ValueError
                 Raised if the number of peaks required for the analysis are not met.
+
         """
         filtered_data = apply_savgol_filter(
             pomf_data,
@@ -280,6 +287,7 @@ class PotentialOfMeanForce(Calculator):
                 Dict of all shells detected based on user arguments, e.g:
                 {'1': [0.1, 0.2]} indicates that the first pomf peak is betwee 0.1 and
                 0.2 angstrom.
+
         """
         # get the peaks of the tensor_values post-filtering
         peaks = self.get_pomf_peaks(pomf_data)
@@ -311,6 +319,7 @@ class PotentialOfMeanForce(Calculator):
         pomf_data : dict
                 A dictionary of the pomf values and their uncertainty. e,g:
                 {"POMF_1": 5.6, "POMF_1_error": 0.01}
+
         """
         pomf_shells = self._find_minimum(pomf, radii)
 

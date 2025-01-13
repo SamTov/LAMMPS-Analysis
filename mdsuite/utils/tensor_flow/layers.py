@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import tensorflow as tf
 
 from .helpers import triu_indices as compute_triu
@@ -38,6 +39,7 @@ class NLLayer(tf.keras.layers.Layer):
         ----------
         dense: bool
             Return the flat_rij or a dense r_ij
+
         """
         super().__init__(**kwargs)
         self.dense = dense

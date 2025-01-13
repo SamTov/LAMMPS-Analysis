@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -40,10 +41,12 @@ class RunModule:
     This class is a helper to convert the dictionary of possible computations
     "dict_classes_computations" into attributes of the `experiment.run_computation`
     helper class.
+
     """
 
     def __init__(self, parent, module_dict, **kwargs):
         """Initialize the attributes
+
         Parameters
         ----------
         parent: Experiment
@@ -53,6 +56,7 @@ class RunModule:
             operations with their names as keys
         kwargs:
             Additional parameters to be passed to the module_dict.
+
         """
         self.parent: Experiment = parent
         self._kwargs = kwargs
@@ -68,6 +72,7 @@ class RunModule:
         Returns
         -------
             Instantiated calculator class with added experiment that can be called.
+
         """
         if item.startswith("_"):
             # handle private functions

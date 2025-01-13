@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import dataclasses
 import logging
 import pathlib
@@ -56,6 +57,7 @@ class PropertyInfo:
         The name of the property
     n_dims:
         The dimensionality of the property
+
     """
 
     name: str
@@ -76,6 +78,7 @@ class SpeciesInfo:
     properties: list of PropertyInfo
         List of the properties that were recorded for the species
         mass and charge are optional
+
     """
 
     name: str
@@ -116,6 +119,7 @@ class MoleculeInfo(SpeciesInfo):
             water = {"groups": {"0": {"H": [0, 1], "O": [0]}}
         This tells us that the 0th water molecule consists of the 0th and 1st hydrogen
         atoms in the database as well as the 0th oxygen atom.
+
     """
 
     groups: dict = None
@@ -158,6 +162,7 @@ class TrajectoryMetadata:
     simulation_data : str|Path, optional
         All other simulation data that can be extracted from the trajectory metadata.
         E.g. software version, pressure in NPT simulations, time step, ...
+
     """
 
     n_configurations: int
@@ -183,6 +188,7 @@ class TrajectoryChunkData:
             are recorded for each
         chunk_size : int
             The number of configurations to be stored in this chunk
+
         """
         self.chunk_size = chunk_size
         self.species_list = species_list
@@ -197,6 +203,7 @@ class TrajectoryChunkData:
     def add_data(self, data: np.ndarray, config_idx, species_name, property_name):
         """
         Add configuration data to the chunk
+
         Parameters
         ----------
         data:
@@ -240,6 +247,7 @@ class Database:
     ----------
     path : str|Path
             The name of the database_path in question.
+
     """
 
     def __init__(self, path: typing.Union[str, pathlib.Path] = "database"):
@@ -250,6 +258,7 @@ class Database:
         ----------
         path : str|Path
                 The name of the database_path in question.
+
         """
         if isinstance(path, pathlib.Path):
             self.path = path.as_posix()
@@ -340,6 +349,7 @@ class Database:
             a data chunk
         start_idx:
             Configuration at which to start writing.
+
         """
         workaround_time_in_axis_1 = True
 
@@ -467,6 +477,7 @@ class Database:
         Returns
         -------
         Updates the database_path directly.
+
         """
         with hf.File(self.path, "a") as database:
             for item in architecture:
@@ -515,6 +526,7 @@ class Database:
         Returns
         -------
         Updates the database_path directly.
+
         """
         with hf.File(self.path, "a") as database:
             # Build file paths for the addition.
@@ -534,6 +546,7 @@ class Database:
         memory_database : dict
                 A dictionary of the memory information of the groups in the
                 database_path
+
         """
         with hf.File(self.path, "r") as database:
             memory_database = {}
@@ -556,6 +569,7 @@ class Database:
         -------
         response : bool
                 If true, the path exists, else, it does not.
+
         """
         with hf.File(self.path, "r") as database_object:
             keys = []
@@ -583,6 +597,7 @@ class Database:
         Returns
         -------
         Updates the database_path
+
         """
         with hf.File(self.path, "r+") as db:
             groups = list(db.keys())
@@ -651,6 +666,7 @@ class Database:
         -------
         opening time : float
                 Time taken to open and close the database_path
+
         """
         if database_path is None:
             start = time.time()
@@ -679,6 +695,7 @@ class Database:
         dataset_properties : tuple
                 Tuple of tensor_values about the dataset, e.g.
                 (n_rows, n_columns, n_bytes)
+
         """
         with hf.File(self.path, "r") as db:
             data_tuple = (
@@ -697,6 +714,7 @@ class Database:
         -------
         summary : list
                 A list of properties that are in the database.
+
         """
         with hf.File(self.path, "r") as db:
             return list(db.keys())

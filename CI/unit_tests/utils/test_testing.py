@@ -25,6 +25,7 @@ Summary
 -------
 Test the mdsuite testing modules.
 """
+
 import time
 import unittest
 
@@ -101,6 +102,7 @@ class TestAssertDeepAlmostEqual(unittest.TestCase):
         Notes
         -----
         Taken from the module __main__
+
         """
         dict_2a = {"a": {"b": np.array([1, 2, 3, 4])}}
         dict_2b = {"a": {"b": [1, 2, 3, 4]}}

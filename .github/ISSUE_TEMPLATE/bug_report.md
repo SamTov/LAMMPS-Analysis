@@ -21,9 +21,9 @@ happen.
 
 **Desktop (please complete the following information):**
 
-- OS: \[e.g. iOS\]
-- Browser \[e.g. chrome, safari\]
-- Version \[e.g. 22\]
+- OS: [e.g. iOS]
+- Browser [e.g. chrome, safari]
+- Version [e.g. 22]
 
 **System parameters** Please run the following in your python kernel and copy
 the output below.

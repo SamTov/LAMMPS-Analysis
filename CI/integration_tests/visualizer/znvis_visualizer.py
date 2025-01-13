@@ -25,6 +25,7 @@ Summary
 -------
 Test that the visualizer runs.
 """
+
 import os
 import tempfile
 import time
@@ -54,6 +55,7 @@ class TestZnvisVisualizer(unittest.TestCase):
             test isn't prematurely closed and passes when it should have failed. For now
             120 seconds is more than enough time for this test but we can think of some
             improvements later.
+
         """
         process = MDSuiteProcess(target=self._run_app)
         process.start()

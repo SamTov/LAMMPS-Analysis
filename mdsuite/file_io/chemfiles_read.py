@@ -1,4 +1,5 @@
 """Test MDSuites chemfiles read module."""
+
 import pathlib
 import typing
 
@@ -34,6 +35,7 @@ class ChemfilesRead(mdsuite.file_io.file_read.FileProcessor):
             If the trajectory file does not contain all information about the topology of
             the system (i.e. which data in the trajectory file belongs to which particle),
              you can provide the topology here.
+
         """
         self.traj_file_path = pathlib.Path(traj_file_path).resolve()
 
@@ -147,6 +149,7 @@ class ChemfilesRead(mdsuite.file_io.file_read.FileProcessor):
             An open chemfiles Trajectory
         n_configs : int
             Number of configurations to read in.
+
         """
         species_list = self.metadata.species_list
         chunk = mdsuite.database.simulation_database.TrajectoryChunkData(

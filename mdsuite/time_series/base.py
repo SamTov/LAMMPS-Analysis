@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -54,6 +55,7 @@ class TimeSeries:
         ----------
         experiment: Experiment
             The parent experiment class to perform the time series operation on
+
         """
         self.experiment = experiment
 

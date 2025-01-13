@@ -25,6 +25,7 @@ Summary
 -------
 Module for testing the calculator helper methods.
 """
+
 import numpy as np
 import pytest
 from numpy.testing import assert_array_equal, assert_raises
@@ -49,6 +50,7 @@ class TestCalculatorHelperMethods:
 
         * Returns correct gradient on a straight line
         * Returns correct gradient on a multi-regime line
+
         """
         x_data = np.linspace(0, 1000, 1000)
 
@@ -79,6 +81,7 @@ class TestCalculatorHelperMethods:
 
         The first signal is auto-correlated, the second is perfectly anti-correlated.
         Therefore, when summed, they should cancel to zero.
+
         """
         # generate 10 points
         t = np.arange(10)
@@ -111,6 +114,7 @@ class TestCalculatorHelperMethods:
 
         The first signal is auto-correlated, the second is perfectly anti-correlated.
         Therefore, when summed, they should cancel to zero.
+
         """
         # generate 10 points
         t = np.arange(10)

@@ -1,4 +1,5 @@
 """Test MDSuite Experiment class."""
+
 import pytest
 
 from mdsuite.experiment.experiment import Experiment

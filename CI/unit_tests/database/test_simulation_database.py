@@ -23,6 +23,7 @@ Summary
 -------
 Test for module for the simulation database.
 """
+
 import os
 import tempfile
 import unittest
@@ -43,6 +44,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         Asserts that the correct path is generated for a given input.
+
         """
         temp_dir = tempfile.TemporaryDirectory()
         os.chdir(temp_dir.name)
@@ -70,6 +72,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         Assert that a dataset of the correct size is built.
+
         """
         temp_dir = tempfile.TemporaryDirectory()
         os.chdir(temp_dir.name)
@@ -93,6 +96,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         Resizes a built dataset and checks that the size is now correct.
+
         """
         temp_dir = tempfile.TemporaryDirectory()
         os.chdir(temp_dir.name)
@@ -118,6 +122,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         Checks for a False and then True result.
+
         """
         temp_dir = tempfile.TemporaryDirectory()
         os.chdir(temp_dir.name)
@@ -135,6 +140,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         Checks for a True and False result.
+
         """
         temp_dir = tempfile.TemporaryDirectory()
         os.chdir(temp_dir.name)

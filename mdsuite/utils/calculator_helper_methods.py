@@ -25,6 +25,7 @@ Summary
 -------
 Static methods used in calculators are kept here rather than polluting the parent class.
 """
+
 import logging
 from typing import Any, Iterable, Tuple, Union
 
@@ -59,6 +60,7 @@ def fit_einstein_curve(
             List of fit values
     pcov : list
             Covariance matrix of the fit values.
+
     """
     # Defined here for completeness.
     popt = []
@@ -81,6 +83,7 @@ def fit_einstein_curve(
         Returns
         -------
         m * x + a
+
         """
         return m * x + a
 
@@ -123,6 +126,7 @@ def correlate(ds_a: np.ndarray, ds_b: np.ndarray) -> np.ndarray:
     -------
     Computes the correlation between the two data sets and averages over the spatial
     dimension.
+
     """
 
     def _correlate_op(a: np.ndarray, b: np.ndarray):
@@ -139,6 +143,7 @@ def correlate(ds_a: np.ndarray, ds_b: np.ndarray) -> np.ndarray:
         Returns
         -------
         correlation over a single dimension.
+
         """
         return jnp.correlate(a, b, mode="full")
 

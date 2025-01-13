@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 try:
     from importlib import metadata
 except ImportError:  # for Python<3.8

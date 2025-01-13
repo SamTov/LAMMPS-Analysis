@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from .integrated_heat_current import IntegratedHeatCurrent
 from .ionic_current import IonicCurrent
 from .kinaci_integrated_heat_current import KinaciIntegratedHeatCurrent

@@ -27,6 +27,7 @@ Module to perform the calculation of the angular distribution function (ADF). Th
 describes the average distribution of angles between three particles of species a, b,
 and c. Note that a, b, and c may all be the same species, e.g. Na-Na-Na.
 """
+
 import itertools
 import logging
 from abc import ABC
@@ -108,6 +109,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
                                                            stop = 200,
                                                            bins = 100,
                                                            use_tf_function = False)
+
     """
 
     def __init__(self, **kwargs):
@@ -118,6 +120,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         ----------
         experiment : object
                 Experiment object from which to take attributes.
+
         """
         super().__init__(**kwargs)
         self.scale_function = {"quadratic": {"outer_scale_factor": 10}}
@@ -191,6 +194,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
                 if true, perform the analysis on molecules.
         plot : bool
                 If true, plot the result of the analysis.
+
         """
         # set args that will affect the computation result
         self.args = Args(
@@ -224,6 +228,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the class attributes.
+
         """
         self._run_dependency_check()
         if self.args.stop is None:
@@ -253,6 +258,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the number of atoms attribute.
+
         """
         # TODO return to dotdict form when molecules is a dotdict
         number_of_atoms = 0
@@ -376,6 +382,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         -------
         condition
         name
+
         """
         (i_name, i_min, i_max), (j_name, j_min, j_max), (k_name, k_min, k_max) = species
         name = f"{i_name}-{j_name}-{k_name}"
@@ -404,6 +411,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         -------
         angles : dict
                 A dictionary of the triples references and their histogram values.
+
         """
         tmp = tf.transpose(tf.concat(positions, axis=0), (1, 0, 2))
 
@@ -449,6 +457,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the class, the SQL database, and plots values if required.
+
         """
         for species in itertools.combinations_with_replacement(species_indices, 3):
             name = f"{species[0][0]}-{species[1][0]}-{species[2][0]}"
@@ -526,6 +535,7 @@ class AngularDistributionFunction(TrajectoryCalculator, ABC):
         Returns
         -------
         Updates the parent class.
+
         """
         if self.batch_size > self.args.number_of_configurations:
             self.batch_size = self.args.number_of_configurations

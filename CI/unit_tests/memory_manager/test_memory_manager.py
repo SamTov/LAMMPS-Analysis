@@ -19,6 +19,7 @@ Summary
 -------
 Test for the memory manager module.
 """
+
 import unittest
 
 import numpy as np
@@ -68,6 +69,7 @@ class TestMemoryManager(unittest.TestCase):
         -----
         Each test will check that the function parameters are return correctly and
         that the function is called correctly and returns proper values.
+
         """
         # Test linear function
         scale_function = {"linear": {"scale_factor": 2}}
@@ -83,6 +85,7 @@ class TestMemoryManager(unittest.TestCase):
         -----
         Each test will check that the function parameters are return correctly and
         that the function is called correctly and returns proper values.
+
         """
         # Test log-linear function
         scale_function = {"log-linear": {"scale_factor": 2}}
@@ -98,6 +101,7 @@ class TestMemoryManager(unittest.TestCase):
         -----
         Each test will check that the function parameters are return correctly and
         that the function is called correctly and returns proper values.
+
         """
         # Test quadratic function
         scale_function = {"quadratic": {"inner_scale_factor": 2, "outer_scale_factor": 2}}
@@ -114,6 +118,7 @@ class TestMemoryManager(unittest.TestCase):
         -----
         Each test will check that the function parameters are return correctly and
         that the function is called correctly and returns proper values.
+
         """
         # Test polynomial function
         scale_function = {
@@ -164,6 +169,7 @@ class TestMemoryManager(unittest.TestCase):
         Returns
         -------
         Tests that the method returns the correct load time.
+
         """
         data = self.memory_manager.hdf5_load_time(10)
         self.assertEqual(data, np.log(10))
@@ -176,6 +182,7 @@ class TestMemoryManager(unittest.TestCase):
         -------
         Test that this method returns the expected value. Currently this is just
         the same value that is passed to it.
+
         """
         data = self.memory_manager._get_optimal_batch_size(10)
         self.assertEqual(data, data)  # Todo: no shit, sherlock
@@ -188,6 +195,7 @@ class TestMemoryManager(unittest.TestCase):
         -------
         Test the atom wise minibatch method. The test ensures for only a single case
         that the correct numbers are returned.
+
         """
         self.memory_manager.database = TestDatabase()
         self.memory_manager.data_path = ["Test/Path"]

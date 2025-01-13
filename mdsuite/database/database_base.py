@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import logging
 from pathlib import Path
 
@@ -47,6 +48,7 @@ class DatabaseBase:
         ----------
         database_name: str
             name of the database
+
         """
         self.name = ""  # Name of the Project
         self.database_name = database_name

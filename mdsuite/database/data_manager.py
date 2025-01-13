@@ -27,6 +27,7 @@ Module for the data manager. The data manager handles loading of data as TensorF
 generators. These generators allow for the full use of the TF data pipelines but can
 required special formatting rules.
 """
+
 import logging
 
 import numpy as np
@@ -98,6 +99,7 @@ class DataManager:
                 Selection of atoms in the calculation.
         offset : int
                 Offset in the data loading if it should not be loaded from the start.
+
         """
         self.database = database
         self.data_path = data_path
@@ -144,6 +146,7 @@ class DataManager:
         Returns
         -------
         Returns a generator function and its arguments
+
         """
         args = (
             self.n_batches,
@@ -175,8 +178,10 @@ class DataManager:
                     Path to the tensor_values in the database_path
             dictionary : bool
                     If true, tensor_values is returned in a dictionary
+
             Returns
             -------
+
             """
             database = Database(database)
 
@@ -242,8 +247,10 @@ class DataManager:
                     Path to the tensor_values in the database_path
             dictionary : bool
                     If true, tensor_values is returned in a dictionary
+
             Returns
             -------
+
             """
             # Atom selection not currently available for mini-batched calculations
             if type(self.atom_selection) is dict:
@@ -303,12 +310,14 @@ class DataManager:
         Returns
         -------
         Ensemble loop generator
+
         """
         args = (self.ensemble_loop, self.correlation_time, self.data_range)
 
         def dictionary_generator(ensemble_loop, correlation_time, data_range):
             """
             Generator for the ensemble loop
+
             Parameters
             ----------
             ensemble_loop : int
@@ -317,9 +326,11 @@ class DataManager:
                     Distance between ensembles
             data_range : int
                     Size of each ensemble
+
             Returns
             -------
             None.
+
             """
             ensemble_loop = int(
                 np.clip(
