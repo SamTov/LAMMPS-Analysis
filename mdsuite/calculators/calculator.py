@@ -25,6 +25,7 @@ Summary
 -------
 Parent class for the calculators.
 """
+
 from __future__ import annotations
 
 import functools
@@ -104,6 +105,7 @@ def call(func):
         data:
             A dictionary of shape {name: data} when called from the project class
             A list of [data] when called directly from the experiment class
+
         """
         # This is only true, when called via project.experiments.<exp>.run,
         #  otherwise the experiment will be None
@@ -191,6 +193,7 @@ class Calculator(CalculatorDatabase):
     plot_array : list
             A list of plot objects to be show together at the end of the
             species loop.
+
     """
 
     def __init__(
@@ -205,6 +208,7 @@ class Calculator(CalculatorDatabase):
                 Experiment for which the calculator will be run.
         experiments : List[Experiment]
                 List of experiments on which to run the calculator.
+
         """
         # Set upon instantiation of parent class
         super().__init__(experiment)
@@ -266,6 +270,7 @@ class Calculator(CalculatorDatabase):
         Returns
         -------
         Updates the plot array with a Bokeh plot object.
+
         """
         self.plot_array.append(
             self.plotter.construct_plot(
@@ -296,6 +301,7 @@ class Calculator(CalculatorDatabase):
         ----------
         data: db.Compution.data_dict
                 associated with the current project
+
         """
         for selected_species, val in data.items():
             self.run_visualization(

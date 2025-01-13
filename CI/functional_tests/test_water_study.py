@@ -25,6 +25,7 @@ Summary
 -------
 Functional test for the analysis of a GROMACS water simulation.
 """
+
 from typing import List
 
 import pytest
@@ -65,6 +66,7 @@ def mdsuite_project(traj_files, tmp_path) -> mdsuite.Project:
     -------
     project: mdsuite.Project
             An MDSuite project to be tested.
+
     """
     gmx_units = Units(
         time=1e-12,
@@ -102,6 +104,7 @@ def test_water_analysis(mdsuite_project):
     -----
     The diffusion, angle, and eventually coordination data tested here are comparable
     with values taken from experiment and published studies.
+
     """
     water = mdsuite_project.experiments["water_sim"]
 

@@ -25,6 +25,7 @@ Summary
 -------
 Parent class for the transformations.
 """
+
 from __future__ import annotations
 
 import abc
@@ -83,6 +84,7 @@ class Transformations:
             data manager for handling the data transfer
     memory_manager : MemoryManager
             memory manager for the computation.
+
     """
 
     def __init__(
@@ -111,6 +113,7 @@ class Transformations:
             specifies memory requirements of the transformation
         dtype :
             data type of the processed values
+
         """
         self._experiment = None
         self._database = None
@@ -165,6 +168,7 @@ class Transformations:
         outcome : bool
                 If True, the dataset already exists and should be extended.
                 If False, a new dataset should be built.
+
         """
         return self.database.check_existence(path)
 
@@ -179,9 +183,11 @@ class Transformations:
         # todo for the future: this should not be part of the transformation.
         # the transformation should yield a batch and the experiment should take care of
         # storing it in the correct place, just as with file inputs
+
         Returns
         -------
         saves the tensor_values to the database_path.
+
         """
         # turn data into trajectory chunk
         # data_structure is dict {'/path/to/property':{'indices':irrelevant,
@@ -285,6 +291,7 @@ class Transformations:
         -------
         tensor_values structure for use in saving the tensor_values to the
         database_path.
+
         """
         if system_tensor:
             output_length = 1
@@ -447,6 +454,7 @@ class SingleSpeciesTrafo(Transformations):
         """
         Perform the batching and data loading for the transformation,
         then calls transform_batch
+
         Parameters
         ----------
         species : Iterable[str]
@@ -540,6 +548,7 @@ class SingleSpeciesTrafo(Transformations):
         Or tuple of (<transformed batch>, <carryover>),
         where the carryover can have any type.
         The carryover will be used as the optional argument for the next batch
+
         """
         raise NotImplementedError("transformation of a batch must be implemented")
 
@@ -554,6 +563,7 @@ class MultiSpeciesTrafo(Transformations):
         """
         Perform the batching and data loading for the transformation,
         then calls transform_batch
+
         Parameters
         ----------
         species : Iterable[str]

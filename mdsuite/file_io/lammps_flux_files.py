@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import pathlib
 import typing
 
@@ -65,6 +66,7 @@ class LAMMPSFluxFile(mdsuite.file_io.tabular_text_files.TabularTextFileProcessor
         Initialize the lammps flux reader. Since the flux file does not have a fixed
         expected content, you need to provide the necessary metadata
         (sample_rate, box_l) here manually
+
         Parameters
         ----------
         file_path
@@ -82,6 +84,7 @@ class LAMMPSFluxFile(mdsuite.file_io.tabular_text_files.TabularTextFileProcessor
             corresponding columns
             example:
             {"Thermal_Flux":["c_flux_thermal[1]","c_flux_thermal[2]","c_flux_thermal[3]"]}.
+
         """
         super(LAMMPSFluxFile, self).__init__(
             file_path,

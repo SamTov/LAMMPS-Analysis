@@ -12,6 +12,7 @@ Summary
 -------
 Calculate the velocity of particles from their positions
 """
+
 import typing
 
 import tensorflow as tf

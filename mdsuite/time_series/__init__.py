@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from .energies import Energies
 
 time_series_dict = {"Energies": Energies}

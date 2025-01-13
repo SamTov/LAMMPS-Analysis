@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 import logging
@@ -112,6 +113,7 @@ class CalculatorDatabase:
         db.Computation
             Returns the computation object from the database if available,
             otherwise returns None
+
         """
         log.debug(f"Getting data for {self.experiment.name} with args {self.args}")
         with self.experiment.project.session as ses:
@@ -244,6 +246,7 @@ class CalculatorDatabase:
             subjects: list
                 A list of strings / subject names that are associated with the data,
                 e.g. the pairs of the RDF
+
         """
         self._queued_data.append(ComputationResults(data=data, subjects=subjects))
 
@@ -263,6 +266,7 @@ class CalculatorDatabase:
         Returns
         -------
         Updates the sql database
+
         """
         raise DeprecationWarning("This function has been replaced by `queue_data`")
 

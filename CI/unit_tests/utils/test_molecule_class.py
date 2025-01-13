@@ -25,6 +25,7 @@ Summary
 -------
 Unit tests for the molecule data class.
 """
+
 import pytest
 
 import mdsuite
@@ -42,6 +43,7 @@ def test_instantiation():
     * Fail when essential data is not provided.
     * Store the correct information when provided.
     * Use the correct defaults.
+
     """
     with pytest.raises(TypeError):
         Molecule()

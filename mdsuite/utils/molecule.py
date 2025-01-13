@@ -25,6 +25,7 @@ Summary
 -------
 Module for the MDSuite molecule dataclass
 """
+
 from dataclasses import dataclass
 
 
@@ -56,6 +57,7 @@ class Molecule:
     mol_pbc : bool
             If true, the simulation that was run was using molecule-based PBC, i.e.
             molecules were not allowed to break in the simulation.
+
     """
 
     name: str

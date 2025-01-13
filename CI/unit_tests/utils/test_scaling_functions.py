@@ -20,6 +20,7 @@ Summary
 -------
 Unit tests for the scaling functions module.
 """
+
 import unittest
 
 import numpy as np
@@ -42,6 +43,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         assert that the output is correct for several cases.
+
         """
         # Assert simple multiplication
         data = linear_scale_function(10, 1)
@@ -62,6 +64,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         assert that the output is correct for several cases.
+
         """
         # Assert simple multiplication
         data = linearithmic_scale_function(10, 1)
@@ -82,6 +85,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         assert that the output is correct for several cases.
+
         """
         # Assert simple multiplication
         data = quadratic_scale_function(10, 1, 1)
@@ -106,6 +110,7 @@ class TestScalingFunctions(unittest.TestCase):
         Returns
         -------
         assert that the output is correct for several cases.
+
         """
         # Repeat quadratic test with poly api
         data = polynomial_scale_function(10, 1, 1, 2)

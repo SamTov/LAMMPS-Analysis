@@ -42,6 +42,7 @@ def get_triu_indicies(n_atoms):
     -------
     Returns a vector of size (2, None) instead of a tuple of two values like
     np.triu_indices
+
     """
     bool_mat = tf.ones((n_atoms, n_atoms), dtype=tf.bool)
     # Just construct a boolean true matrix the size of one time_step

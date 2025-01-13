@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import copy
 import logging
 import pathlib
@@ -71,6 +72,7 @@ class EXTXYZFile(mdsuite.file_io.tabular_text_files.TabularTextFileProcessor):
             example: custom_data_map = {"Reduced_Momentum": "redmom"},
             if the file header contains "redmom:R:3" to point to the correct 3
             columns containing the reduced momentum values
+
         """
         super(EXTXYZFile, self).__init__(
             file_path,
@@ -233,6 +235,7 @@ def _get_time(header: str) -> float:
     ----------
     header
         The extxyz header line as one string.
+
     """
     data = copy.deepcopy(header).split()
     time = None
@@ -257,12 +260,14 @@ def _get_property_to_column_idx_dict(
         header to analyse
     var_names:
         dict of translations from MDsuite property names to extxyz property names
+
     Returns
     -------
     species_index: int
         The index of the column in which the species names are stored
     property_summary : dict
             A dictionary of properties and their location in the data file.
+
     """
     data = copy.deepcopy(header).split()
     properties_string = None

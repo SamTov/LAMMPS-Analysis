@@ -25,6 +25,7 @@ Summary
 -------
 A parent class for calculators that operate on the trajectory.
 """
+
 from __future__ import annotations
 
 from abc import ABC
@@ -78,6 +79,7 @@ class TrajectoryCalculator(Calculator, ABC):
             Data manager parent to handle preparation of data generators.
     _database : Database
             Simulation database from which data should be loaded.
+
     """
 
     def __init__(self, experiment: Experiment = None, experiments: List = None):
@@ -90,6 +92,7 @@ class TrajectoryCalculator(Calculator, ABC):
                 Experiment for which the calculator will be run.
         experiments : List[Experiment]
                 List of experiments on which to run the calculator.
+
         """
         super(TrajectoryCalculator, self).__init__(
             experiment=experiment, experiments=experiments
@@ -121,6 +124,7 @@ class TrajectoryCalculator(Calculator, ABC):
         Returns
         -------
         Will call transformations if required.
+
         """
         if self.loaded_property is None:
             return
@@ -162,6 +166,7 @@ class TrajectoryCalculator(Calculator, ABC):
             Returns
             -------
             transformation call.
+
             """
             switcher_unwrapping = {"Unwrapped_Positions": self._unwrap_choice()}
 
@@ -202,6 +207,7 @@ class TrajectoryCalculator(Calculator, ABC):
         -------
         times : np.array
             The time values corresponding to the selected tau values
+
         """
         if isinstance(self.args.tau_values, int):
             self.data_resolution = self.args.tau_values
@@ -237,6 +243,7 @@ class TrajectoryCalculator(Calculator, ABC):
         Returns
         -------
         Updates the remainder attribute if required.
+
         """
         return self.remainder - (self.remainder % self.args.data_range)
 
@@ -255,6 +262,7 @@ class TrajectoryCalculator(Calculator, ABC):
         Returns
         -------
         Updates the calculator class
+
         """
         self.memory_manager = MemoryManager(
             data_path=data_path,
@@ -303,6 +311,7 @@ class TrajectoryCalculator(Calculator, ABC):
         Notes
         -----
         This method is called by some calculator
+
         """
         raise NotImplementedError
 

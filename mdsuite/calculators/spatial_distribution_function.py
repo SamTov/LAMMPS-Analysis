@@ -25,6 +25,7 @@ Summary
 -------
 Module for the spatial distribution function calculator.
 """
+
 from __future__ import annotations
 
 import logging
@@ -131,6 +132,7 @@ class SpatialDistributionFunction(TrajectoryCalculator):
             List of species to use, for computing the SDF,
             if None a single SDF of all available species will be computed
         kwargs
+
         """
         if species is None:
             if molecules:
@@ -168,10 +170,12 @@ class SpatialDistributionFunction(TrajectoryCalculator):
                 List of indices to take from the database_path
         species: str
                 The species to load the positions from
+
         Returns
         -------
         loaded_data : tf.Tensor
                 tf.Tensor of tensor_values loaded from the hdf5 database_path
+
         """
         path_list = [join_path(species, self.loaded_property.name)]
 
@@ -259,6 +263,7 @@ class SpatialDistributionFunction(TrajectoryCalculator):
         tf.Tensor:
             A Tensor with shape (n_bins, n_bins, 3) where 3 represents (x,y,z)
             for the coordinates of a unit sphere
+
         """
         theta_range = [0, math.pi]
         phi_range = [-math.pi, math.pi]

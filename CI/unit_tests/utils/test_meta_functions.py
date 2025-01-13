@@ -25,6 +25,7 @@ Summary
 -------
 Test the meta functions module.
 """
+
 import os
 
 import numpy as np
@@ -57,6 +58,7 @@ class TestMetaFunction:
         Returns
         -------
         assert that join_path('a', 'b') is 'a/b'
+
         """
         assert join_path("a", "b") == "a/b"
 
@@ -67,6 +69,7 @@ class TestMetaFunction:
         Returns
         -------
         assert that for all choices of dimension array the correct dimension comes out.
+
         """
         one_d = [1, 0, 0]
         two_d = [1, 1, 0]
@@ -82,6 +85,7 @@ class TestMetaFunction:
         Returns
         -------
         This test will just run the method and check for a failure.
+
         """
         get_machine_properties()
 
@@ -92,6 +96,7 @@ class TestMetaFunction:
         Returns
         -------
         Check that the correct number of lines is return for a test file.
+
         """
         data = [["ayy"], ["bee"], ["cee"], ["dee"]]
         name = "line_counter_test.txt"
@@ -108,6 +113,7 @@ class TestMetaFunction:
         Returns
         -------
         assert the correct batch size is returned for several inputs.
+
         """
         # Assert that the batch number is the full trajectory.
         number_of_configurations = 10
@@ -134,6 +140,7 @@ class TestMetaFunction:
         Returns
         -------
         Assert the correction function values come out.
+
         """
         a = 5
         b = 3
@@ -148,6 +155,7 @@ class TestMetaFunction:
         Returns
         -------
         Assert that the arrays read in are as expected.
+
         """
         data = [["ayy"], ["bee"], ["cee"], ["dee"]]
         name = "line_counter_test.txt"
@@ -164,11 +172,12 @@ class TestMetaFunction:
         Returns
         -------
         Asserts that the correct minimum is found.
+
         """
 
         def func(x: np.ndarray):
             """
-            test function.
+            Test function.
 
             Parameters
             ----------
@@ -177,6 +186,7 @@ class TestMetaFunction:
             Returns
             -------
             x**2
+
             """
             return x**2
 
@@ -193,6 +203,7 @@ class TestMetaFunction:
         Returns
         -------
         Assert the correct rounding occurs.
+
         """
         b = 10
         a = 9
@@ -206,6 +217,7 @@ class TestMetaFunction:
         Returns
         -------
         assert that array splitting has been performed correctly.
+
         """
         a = np.array([1, 2, 3, 10, 20, 30])
         assert np.array_equal(
@@ -219,6 +231,7 @@ class TestMetaFunction:
         Returns
         -------
         assert that a deep item is retrieved from a dictionary.
+
         """
         test_1 = {"a": 4}  # test the first if statement
         test_2 = {
@@ -246,6 +259,7 @@ class TestMetaFunction:
 
         * If a is in b a True is returned
         * If a is not in b a False is returned.
+
         """
         b = tf.constant([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
         a = tf.constant([4, 5, 6])

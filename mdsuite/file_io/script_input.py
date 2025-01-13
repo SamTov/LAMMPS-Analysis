@@ -1,4 +1,5 @@
 """MDSuite script input module."""
+
 import typing
 
 import mdsuite.file_io.file_read
@@ -16,12 +17,14 @@ class ScriptInput(mdsuite.file_io.file_read.FileProcessor):
     ):
         """
         Provide all the data needed for this class to act as a FileProcessor
+
         Parameters
         ----------
         data
         metadata
         name : A unique name for this dataset. Used to prevent multiple adding of the
          same data.
+
         """
         self.data = data
         self.mdata = metadata

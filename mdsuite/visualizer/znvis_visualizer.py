@@ -25,6 +25,7 @@ Summary
 -------
 Module implementing the ZnVis visualizer in MDSuite.
 """
+
 import importlib.resources
 import json
 
@@ -61,6 +62,7 @@ class SimulationVisualizer:
                 Frame rate at which to run the visualization in frames per second.
         database_path : str
                 Database path from the experiment.
+
         """
         self.counter = 0
         # Particle information
@@ -88,6 +90,7 @@ class SimulationVisualizer:
                 RBG array of colours.
         radius : float
                 Radius of the particles. This is a reduced mass.
+
         """
         # Load the species data from pubchempy data file.
         pse = json.loads(
@@ -111,6 +114,7 @@ class SimulationVisualizer:
         -------
         particle_list : list[znvis.Particle]
                 A list of particle objects.
+
         """
         particle_list = []
         for item in self.species:
@@ -134,6 +138,7 @@ class SimulationVisualizer:
         Returns
         -------
         Opens the ZnVis app and runs the visualization.
+
         """
         particle_list = self._prepare_species()
         visualizer = znvis.Visualizer(particles=particle_list, frame_rate=24)

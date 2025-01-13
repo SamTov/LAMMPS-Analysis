@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import logging
 from typing import List
 
@@ -58,6 +59,7 @@ class MolecularMap(Transformations):
                 {'smiles': 'F[P-](F)(F)(F)(F)F', 'amount': 20}}
 
             would be the input for the emim-PF6 ionic liquid.
+
     """
 
     def __init__(self):
@@ -85,6 +87,7 @@ class MolecularMap(Transformations):
         -------
         data_structure : dict
                 A data structure for the incoming data.
+
         """
         # collect machine properties and determine batch size
         path = join_path(species, self.mapping_property.name)
@@ -111,6 +114,7 @@ class MolecularMap(Transformations):
         Returns
         -------
         Calls a resolve method if dependencies are not met.
+
         """
         for sp_name in self.experiment.species:
             path = join_path(sp_name, self.dependency.name)
@@ -130,6 +134,7 @@ class MolecularMap(Transformations):
         -------
         mass_array : list
                 A list of masses.
+
         """
         return [self.experiment.species[item].mass for item in species]
 
@@ -145,6 +150,7 @@ class MolecularMap(Transformations):
         Returns
         -------
         type_spec : dict
+
         """
         type_spec = {}
         for item in path_list:
@@ -176,6 +182,7 @@ class MolecularMap(Transformations):
         -------
         reduced_mass_dict : dict
                 Dictionary of reduced masses for each species.
+
         """
         reduced_mass_dict = {}
         for item in species:
@@ -192,6 +199,7 @@ class MolecularMap(Transformations):
         Returns
         -------
         Updates the database.
+
         """
         molecule_name = molecular_graph.molecule_name
         molecules = self.experiment.molecules
@@ -272,6 +280,7 @@ class MolecularMap(Transformations):
         Returns
         -------
         Update the experiment database.
+
         """
         self._run_dependency_check()
 

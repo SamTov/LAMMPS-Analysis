@@ -25,6 +25,7 @@ Summary
 -------
 Module to test the molecular graph module.
 """
+
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -54,6 +55,7 @@ class SmilesTestData:
     species : dict
             A dictionary of species information for the test stating how many of each
             particle species is in the group e.g. {'C': 6, 'H': 14}
+
     """
 
     name: str
@@ -78,6 +80,7 @@ class TestMolecularGraph:
         Returns
         -------
         Checks whether or not the cutoff has been enforced.
+
         """
         zeros = np.array([0, 0, 0, 0, 0])
         cutoff_data = [
@@ -123,6 +126,7 @@ class TestMolecularGraph:
         -------
         This test checks that the SMILES graphs built by the module return the correct
         molecule information for several scenarios.
+
         """
         emim = SmilesTestData(
             name="emim",

@@ -26,6 +26,7 @@ Summary
 MDSuite module for the computation of the thermal conductivity using the Green-Kubo
 relation.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -75,6 +76,7 @@ class GreenKuboThermalConductivity(TrajectoryCalculator, ABC):
     --------
     experiment.run_computation.GreenKuboThermalConductivity(data_range=500,
     plot=True, correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -85,6 +87,7 @@ class GreenKuboThermalConductivity(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         super().__init__(**kwargs)
         self.scale_function = {"linear": {"scale_factor": 5}}
@@ -119,6 +122,7 @@ class GreenKuboThermalConductivity(TrajectoryCalculator, ABC):
                 Correlation time to use in the window sampling.
         integration_range : int
                 Range over which the integration should be performed.
+
         """
         self.plot = plot
         self.jacf: np.ndarray
@@ -199,6 +203,7 @@ class GreenKuboThermalConductivity(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         jacf = self.args.data_range * tf.reduce_sum(
             tfp.stats.auto_correlation(ensemble, normalize=False, axis=0, center=False),
@@ -214,7 +219,7 @@ class GreenKuboThermalConductivity(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes.
+        Call the post-op processes.
 
         Returns
         -------

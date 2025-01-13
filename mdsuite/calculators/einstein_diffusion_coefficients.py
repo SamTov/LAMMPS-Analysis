@@ -25,6 +25,7 @@ Summary
 -------
 Module for the computation of self-diffusion coefficients using the Einstein method.
 """
+
 from __future__ import annotations
 
 import logging
@@ -79,6 +80,7 @@ class EinsteinDiffusionCoefficients(TrajectoryCalculator, ABC):
     project.experiment.run.EinsteinDiffusionCoefficients(data_range=500,
                                                          plot=True,
                                                          correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -89,6 +91,7 @@ class EinsteinDiffusionCoefficients(TrajectoryCalculator, ABC):
                 Experiment class to call from
         experiments :  Experiment
                 Experiment classes to call from
+
         """
         super().__init__(**kwargs)
         self.scale_function = {"linear": {"scale_factor": 150}}
@@ -143,6 +146,7 @@ class EinsteinDiffusionCoefficients(TrajectoryCalculator, ABC):
         Returns
         -------
         None
+
         """
         if species is None:
             if molecules:
@@ -177,6 +181,7 @@ class EinsteinDiffusionCoefficients(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         msd = tf.math.squared_difference(
             tf.gather(ensemble, self.args.tau_values, axis=1), ensemble[:, None, 0]

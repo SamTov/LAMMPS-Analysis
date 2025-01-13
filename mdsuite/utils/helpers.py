@@ -9,6 +9,7 @@ Copyright Contributors to the Zincware Project.
 
 Description:
 """
+
 import contextlib
 
 import numpy as np
@@ -25,6 +26,7 @@ class NoneType:
     >>> x = NoneType
     >>> x is NoneType
     >>> x is not None
+
     """
 
     def __init__(self):
@@ -47,6 +49,7 @@ def compute_memory_fraction(desired_memory: float, total_memory: float = None):
     memory fraction : float
             What fraction of the current systems memory this value corresponds to.
             If this number is above 1, it is clipped to 1
+
     """
     if total_memory is None:
         total_memory = get_machine_properties()["memory"] / (1024.0**3)
@@ -69,6 +72,7 @@ def change_memory_fraction(desired_memory):
     ------
         environment where the 'config.memory_fraction' is adapted
         in regard to the desired_memory.
+
     """
     import mdsuite
 

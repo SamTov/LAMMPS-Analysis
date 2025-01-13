@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import logging
 from typing import Tuple
 
@@ -64,6 +65,7 @@ class MemoryManager:
     memory_fraction : float
     scale_function : dict
     gpu : bool
+
     """
 
     def __init__(
@@ -99,6 +101,7 @@ class MemoryManager:
                 If data is being loaded from a non-zero point in the database the
                 offset is used to take this into account. For example, expanding a
                 transformation.
+
         """
         if scale_function is None:
             scale_function = {"linear": {"scale_factor": 10}}
@@ -135,7 +138,7 @@ class MemoryManager:
     @staticmethod
     def _select_scale_function(input_dict: dict):
         """
-        select a scale function.
+        Select a scale function.
 
         Parameters
         ----------
@@ -145,6 +148,7 @@ class MemoryManager:
         Returns
         -------
         Updates the class state
+
         """
 
         def _string_to_function(argument: str):
@@ -159,6 +163,7 @@ class MemoryManager:
             Returns
             -------
             function : Callable
+
             """
             switcher = {
                 "linear": linear_scale_function,
@@ -192,6 +197,7 @@ class MemoryManager:
         remainder : int
                 number of elements that will be left unloaded after a loop over all
                 batches. This amount can then be loaded to collect unused tensor_values.
+
         """
         if self.data_path is None:
             raise ValueError("No tensor_values have been requested.")
@@ -232,6 +238,7 @@ class MemoryManager:
         -------
         load_time : float
                 Load time of N data points from a hdf5 database.
+
         """
         return np.log(n)
 
@@ -250,6 +257,7 @@ class MemoryManager:
         -------
         batch_size : int
                 An optimized batch size
+
         """
         # db_io_time = self.database.get_load_time()
         return naive_size
@@ -276,6 +284,7 @@ class MemoryManager:
                     Number of batches over atoms.
             self.atom_remainder : int
                     Remainder atoms after even batching.
+
         """
         per_atom_memory = 0  # memory usage per atom within ONE configuration
         per_configuration_memory = 0  # per configuration memory usage
@@ -355,11 +364,13 @@ class MemoryManager:
                 Data range to be used in the analysis.
         correlation_time : int
                 Correlation time to be considered when looping over the tensor_values
+
         Returns
         -------
         data_range_partitions : int
                 Number of time the batch can be looped over with given data_range and
                 correlation time.
+
         """
         final_window = self.batch_size - data_range
         if final_window < 0:

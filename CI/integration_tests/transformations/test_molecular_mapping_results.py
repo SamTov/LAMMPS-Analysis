@@ -25,6 +25,7 @@ Summary
 -------
 Test the outcome of molecular mapping.
 """
+
 from typing import List, Tuple
 
 import pytest
@@ -73,6 +74,7 @@ def mdsuite_project(traj_files, tmp_path) -> mdsuite.Project:
     -------
     project: mdsuite.Project
             An MDSuite project to be tested.
+
     """
     water_files = traj_files[0]
     bmim_file = traj_files[1]
@@ -138,6 +140,7 @@ class TestMoleculeMapping:
         -------
         Tests that the molecule groups detected are done so correctly and that the
         constructed trajectory is also correct.
+
         """
         reference_molecules = {
             "water": MoleculeInfo(
@@ -187,6 +190,7 @@ class TestMoleculeMapping:
         -------
         Tests that the molecule groups detected are done so correctly and that the
         constructed trajectory is also correct.
+
         """
         mdsuite_project.experiments["ligand_water"].species["OW"].mass = [15.999]
         mdsuite_project.experiments["ligand_water"].species["HW1"].mass = [1.00784]

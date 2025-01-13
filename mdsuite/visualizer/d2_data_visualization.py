@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import pathlib
 from typing import List, Union
 
@@ -49,6 +50,7 @@ class DataVisualizer2D:
                 title of the plot.
         path : pathlib.Path
                 path to the saving directory of the plot
+
         """
         if config.jupyter:
             output_notebook()
@@ -84,6 +86,7 @@ class DataVisualizer2D:
         -------
         figure : figure
                 A bokeh figure object.
+
         """
         fig = figure(
             x_axis_label=x_label,

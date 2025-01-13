@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from dataclasses import dataclass
 
 
@@ -40,6 +41,7 @@ class Config:
             If true, jupyter is being used.
     memory_fraction: bool
             The portion of the available memory to be used.
+
     """
 
     jupyter: bool = False

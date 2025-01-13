@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 import logging
@@ -54,6 +55,7 @@ class MolecularGraph:
     ----------
     reference_property : str
             MDSuite property to use for reference during the unwrapping.
+
     """
 
     molecular_mass: float
@@ -122,6 +124,7 @@ class MolecularGraph:
 
         mass : float
                 mass of the molecule
+
         """
         self.molecular_mass = 0.0
         for species, number in self.species.items():
@@ -138,6 +141,7 @@ class MolecularGraph:
         adjacency_matrix : tf.Tensor
                 An adjacency matrix for the configuration describing which atoms are
                 bonded to which others.
+
         """
         path_list = [
             join_path(species, self.reference_property.name) for species in self.species
@@ -186,6 +190,7 @@ class MolecularGraph:
         reduced_graphs : dict
                 A dict of sub graphs constructed from the decomposition of the adjacency
                 matrix. Of the form {'0': [], '1': []}
+
         """
         # TODO: wrap this in an optimizer to iteratively improve the cutoff until the
         #       number is correct.
@@ -249,6 +254,7 @@ class MolecularGraph:
         Returns
         -------
         Returns nothing, raises a value error if condition is not met.
+
         """
         log.info("Performing molecule number isomorphism test.")
         # number of molecules test
@@ -271,6 +277,7 @@ class MolecularGraph:
         Returns
         -------
         Nothing, will raise an exception if the test fails.
+
         """
         log.info("Performing group equality isomorphism test.")
         for mol_number, mol_data in self.molecular_groups.items():
@@ -296,6 +303,7 @@ class MolecularGraph:
         Notes
         -----
         This must be implemented, however, will be quite an expensive operation.
+
         """
         raise NotImplementedError
 
@@ -314,6 +322,7 @@ class MolecularGraph:
         group_dict : dict
                 A dictionary of atoms and indices that specify that indices of
                 this species is in a molecule.
+
         """
         particle_groups = {}
         for item in graph_dict:
@@ -357,6 +366,7 @@ def build_smiles_graph(smiles_string: str) -> tuple:
             Graph object returned by PySmiles
     species : dict
             A dict object containing species information about the molecule.
+
     """
     mol = read_smiles(smiles_string, explicit_hydrogen=True)
     data = mol.nodes
@@ -395,6 +405,7 @@ def _apply_system_cutoff(input_tensor: tf.Tensor, cutoff: float) -> tf.Tensor:
             A tensor of ones and zeros where 1s corresponded to 'bonded' particles
             and 0s indicated no bonding. Note, the diagonals of this tensor are
             set to 0 as a particle cannot bond itself.
+
     """
     cutoff_mask = tf.cast(
         tf.less(input_tensor, cutoff), dtype=tf.int16

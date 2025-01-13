@@ -25,6 +25,7 @@ Summary
 -------
 Module for the computation of kirkwood buff integrals.
 """
+
 import logging
 from dataclasses import dataclass
 
@@ -86,6 +87,7 @@ class KirkwoodBuffIntegral(Calculator):
     Examples
     --------
     experiment.run.KirkwoodBuffIntegral()
+
     """
 
     def __init__(self, **kwargs):
@@ -96,6 +98,7 @@ class KirkwoodBuffIntegral(Calculator):
         ----------
         experiment : class object
                         Class object of the experiment.
+
         """
         super().__init__(**kwargs)
         self.file_to_study = None
@@ -135,6 +138,7 @@ class KirkwoodBuffIntegral(Calculator):
                 Order of the savgol polynomial filter
         savgol_window_length : int
                 Window length of the savgol filter.
+
         """
         if isinstance(rdf_data, Computation):
             self.rdf_data = rdf_data
@@ -155,7 +159,7 @@ class KirkwoodBuffIntegral(Calculator):
 
     def _calculate_kb_integral(self, radii_data: np.ndarray, rdf_data: np.ndarray):
         """
-        calculate the Kirkwood-Buff integral.
+        Calculate the Kirkwood-Buff integral.
 
         Parameters
         ----------
@@ -168,6 +172,7 @@ class KirkwoodBuffIntegral(Calculator):
         -------
         kb_integral : np.ndarray
                 KB integral to be saved.
+
         """
         filtered_data = apply_savgol_filter(
             rdf_data,

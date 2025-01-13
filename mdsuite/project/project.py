@@ -21,6 +21,7 @@ Summary
 -------
 Parent class for the project.
 """
+
 from __future__ import annotations
 
 import logging
@@ -79,6 +80,7 @@ class Project(ProjectDatabase):
     experiments : dict
             A dict of class objects. Class objects are instances of the experiment class
             for different experiments.
+
     """
 
     def __init__(
@@ -101,6 +103,7 @@ class Project(ProjectDatabase):
         storage_path : str
                 Where to store the tensor_values and databases. This should be
                 a place with sufficient storage space for the full analysis.
+
         """
         super().__init__()
         if name is None:
@@ -151,6 +154,7 @@ class Project(ProjectDatabase):
         -------
         str:
             A list of all available experiments like "1.) Exp01\n2.) Exp02\n3.) Exp03"
+
         """
         return "\n".join([f"{exp.id}.) {exp.name}" for exp in self.db_experiments])
 
@@ -259,6 +263,7 @@ class Project(ProjectDatabase):
         Returns
         -------
         Updates the class state.
+
         """
         if isinstance(names, str):
             names = [names]
@@ -273,6 +278,7 @@ class Project(ProjectDatabase):
         ----------
         names: Name or list of names of experiments that should be instantiated
                and loaded into self.experiments
+
         Returns
         -------
 
@@ -297,9 +303,11 @@ class Project(ProjectDatabase):
             values: str or mdsuite.file_io.file_read.FileProcessor
                 refer to mdsuite.experiment.add_data() for an explanation of the file
                 specification options
+
         Returns
         -------
         Updates the experiment classes.
+
         """
         for key, val in data_sets.items():
             self.experiments[key].add_data(val)
@@ -312,6 +320,7 @@ class Project(ProjectDatabase):
         -------
         RunComputation:
             class that has all available calculators as properties
+
         """
         return RunComputation(experiments=list(self.active_experiments.values()))
 

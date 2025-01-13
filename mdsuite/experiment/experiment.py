@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import copy
 import importlib.resources
 import json
@@ -129,6 +130,7 @@ class Experiment(ExperimentDatabase):
             read from the file and will be correct.
     number_of_atoms : int
             The total number of atoms in the simulation
+
     """
 
     def __init__(
@@ -158,6 +160,7 @@ class Experiment(ExperimentDatabase):
                 If true, several parameters involved in plotting and parallelization
                 will be adjusted so as to allow for optimal performance on a large
                 computing cluster.
+
         """
         if not name[0].isalpha():
             raise ValueError(
@@ -218,6 +221,7 @@ class Experiment(ExperimentDatabase):
         -------
         RunComputation:
             class that has all available calculators as properties
+
         """
         return RunComputation(experiment=self)
 
@@ -277,6 +281,7 @@ class Experiment(ExperimentDatabase):
         Parameters
         ----------
         transformation: Transformations
+
         """
         transformation.experiment = self
         transformation.run_transformation(*args, **kwargs)
@@ -299,6 +304,7 @@ class Experiment(ExperimentDatabase):
         -------
         units: Units
             dataclass that contains the conversion factors to SI
+
         """
         if isinstance(units_system, Units):
             return units_system
@@ -354,6 +360,7 @@ class Experiment(ExperimentDatabase):
         Returns
         -------
         Displays a visualization app.
+
         """
         import_error_msg = (
             "It looks like you don't have the necessary plugin for "
@@ -436,6 +443,7 @@ class Experiment(ExperimentDatabase):
                 Name of the element whose charge you want to change
         charge : list
                 New charge/s of the element
+
         """
         species = self.species
         species[element].charge = [charge]
@@ -451,6 +459,7 @@ class Experiment(ExperimentDatabase):
                 Name of the element whose mass you want to change
         mass : list
                 New mass/es of the element
+
         """
         species = self.species
         species[element].mass = mass
@@ -471,6 +480,7 @@ class Experiment(ExperimentDatabase):
         format with its own reader or want to use non-default arguments for your reader,
         instantiate the reader and pass it to this method.
         TODO reference online documentation of data loading in the error messages
+
         Parameters
         ----------
         simulation_data : str or pathlib.Path or mdsuite.file_io.file_read.FileProcessor
@@ -518,6 +528,7 @@ class Experiment(ExperimentDatabase):
                 been seen.
         update_with_pubchempy: bool
                 Whether or not to look for the masses of the species in pubchempy
+
         """
         already_read = str(file_processor) in self.read_files
         if already_read and not force:
@@ -577,6 +588,7 @@ class Experiment(ExperimentDatabase):
         -------
         property_matrix : np.array, tf.Tensor
                 Tensor of the property to be studied. Format depends on kwargs.
+
         """
         database = Database(self.database_path / "database.hdf5")
 
@@ -604,6 +616,7 @@ class Experiment(ExperimentDatabase):
         metadata: TrajectoryMetadata
         update_with_pubchempy: bool
             Load data from pubchempy and add it to fill missing infomration
+
         """
         # new trajectory: store all metadata and construct a new database
         self.temperature = metadata.temperature
@@ -688,7 +701,8 @@ def update_species_attributes_with_pubchempy(species_list: List[SpeciesInfo]):
 def _species_list_to_architecture_dict(species_list, n_configurations):
     # TODO let the database handler use the species list directly instead of the dict
     """
-    converter from species list to legacy architecture dict
+    Converter from species list to legacy architecture dict
+
     Parameters
     ----------
     species_list
@@ -697,6 +711,7 @@ def _species_list_to_architecture_dict(species_list, n_configurations):
     Returns
     -------
     dict like architecture = {'Na':{'Positions':(n_part, n_config, n_dim)}}
+
     """
     architecture = {}
     for sp_info in species_list:

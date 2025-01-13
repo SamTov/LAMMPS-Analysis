@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from .memory_manager import MemoryManager
 
 __all__ = ["MemoryManager"]

@@ -9,6 +9,7 @@ Copyright Contributors to the Zincware Project.
 
 Description: Collection of calculators / transformations for exp.run
 """
+
 from __future__ import annotations
 
 import functools
@@ -70,6 +71,7 @@ class RunComputation:
         experiments: List[Experiment]
             A list of experiments passed by running the computation from the project
             class
+
         """
         self.experiment = experiment
         self.experiments = experiments
@@ -93,6 +95,7 @@ class RunComputation:
         Parameters
         ----------
         func: a transformation to be attached to the experiment/s
+
         """
 
         @functools.wraps(func.run_transformation)

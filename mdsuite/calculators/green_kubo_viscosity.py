@@ -26,6 +26,7 @@ Summary
 MDSuite module for the computation of the viscosity in a system using the Green-Kubo
 relation as applied to the momentum flux measured during a simulation.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -76,6 +77,7 @@ class GreenKuboViscosity(TrajectoryCalculator, ABC):
     --------
     experiment.run_computation.GreenKuboViscosity(data_range=500, plot=True,
     correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -85,6 +87,7 @@ class GreenKuboViscosity(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         super().__init__(**kwargs)
         self.scale_function = {"linear": {"scale_factor": 5}}
@@ -115,6 +118,7 @@ class GreenKuboViscosity(TrajectoryCalculator, ABC):
                 if true, plot the tensor_values
         data_range :
                 Number of configurations to use in each ensemble
+
         """
         self.plot = plot
         self.sigma = []
@@ -194,6 +198,7 @@ class GreenKuboViscosity(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         jacf = self.args.data_range * tf.reduce_sum(
             tfp.stats.auto_correlation(ensemble, normalize=False, axis=0, center=False),
@@ -209,7 +214,7 @@ class GreenKuboViscosity(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

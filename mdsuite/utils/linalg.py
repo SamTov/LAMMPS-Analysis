@@ -67,6 +67,7 @@ def get_angles(r_ij_mat, indices, acos=True):
     Returns
     -------
     tf.Tensor: Tensor with the shape (triples)
+
     """
     r_ij = tf.gather_nd(
         r_ij_mat, tf.stack([indices[:, 0], indices[:, 1], indices[:, 2]], axis=1)
@@ -130,6 +131,7 @@ def apply_system_cutoff(tensor: tf.Tensor, cutoff: float) -> tf.Tensor:
     ----------
     tensor : tf.Tensor
     cutoff : flaot
+
     """
     cutoff_mask = tf.cast(tf.less(tensor, cutoff), dtype=tf.bool)  # Construct the mask
 
@@ -166,6 +168,7 @@ def cartesian_to_spherical_coordinates(
       A tensor of shape `[A1, ..., An, 3]`. The last dimensions contains
       (`r`,`theta`,`phi`), where `r` is the sphere radius, `theta` is the polar
       angle and `phi` is the azimuthal angle. Returns `NaN` gradient if x = y = 0.
+
     """
     with tf.name_scope(name):
         point_cartesian = tf.convert_to_tensor(value=point_cartesian)
@@ -207,6 +210,7 @@ def spherical_to_cartesian_coordinates(
     -------
       A tensor of shape `[A1, ..., An, 3]`, where the last dimension contains the
       cartesian coordinates in x,y,z order.
+
     """
     with tf.name_scope(name):
         point_spherical = tf.convert_to_tensor(value=point_spherical)

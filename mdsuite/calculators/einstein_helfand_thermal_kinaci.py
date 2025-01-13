@@ -26,6 +26,7 @@ Summary
 MDSuite module for the computation of the thermal conductivity in solids using the
 Einstein method as applied to the Kinaci integrated thermal flux.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -88,6 +89,7 @@ class EinsteinHelfandThermalKinaci(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
             Experiment class to call from
+
         """
         # parse to the experiment class
         super().__init__(**kwargs)
@@ -126,6 +128,7 @@ class EinsteinHelfandThermalKinaci(TrajectoryCalculator, ABC):
 
         correlation_time : int
                 Correlation time to use in the window sampling.
+
         """
         if fit_range == -1:
             fit_range = int(data_range - 1)
@@ -198,6 +201,7 @@ class EinsteinHelfandThermalKinaci(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         msd = tf.math.squared_difference(ensemble, ensemble[None, 0])
 
@@ -206,7 +210,7 @@ class EinsteinHelfandThermalKinaci(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

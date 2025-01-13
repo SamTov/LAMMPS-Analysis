@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 from mdsuite.calculators.angular_distribution_function import (

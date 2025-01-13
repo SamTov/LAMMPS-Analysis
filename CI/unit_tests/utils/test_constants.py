@@ -1,4 +1,5 @@
 """Test for MDSuite utils.constants."""
+
 import dataclasses
 
 import pytest

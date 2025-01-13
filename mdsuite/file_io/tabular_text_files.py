@@ -1,4 +1,5 @@
 """MDSuite Tabular Text file reader module."""
+
 import abc
 import copy
 import dataclasses
@@ -43,6 +44,7 @@ class TabularTextFileReaderMData:
         within a config
         if int: sort the lines in the config by the column with this index
         (e.g., use to sort by particle id in unsorted config output)
+
     """
 
     n_configs: int
@@ -72,6 +74,7 @@ class TabularTextFileProcessor(mdsuite.file_io.file_read.FileProcessor):
         custom_column_names.
         The result, self._column_name_dict is supposed to be used by child functions to
         create their TabularTextFileReaderData
+
         Parameters
         ----------
         file_path:
@@ -85,6 +88,7 @@ class TabularTextFileProcessor(mdsuite.file_io.file_read.FileProcessor):
             Dict connecting user-defined properties the column names. To be provided by
             the user.
             Example: {'MyMagicProperty':['MMP1', 'MMP2']}.
+
         """
         self.file_path = pathlib.Path(file_path).resolve()
         my_file_format_column_names = copy.deepcopy(file_format_column_names)
@@ -165,6 +169,7 @@ class TabularTextFileProcessor(mdsuite.file_io.file_read.FileProcessor):
     ) -> mdsuite.database.simulation_database.TrajectoryChunkData:
         """
         Read n configurations and package them into a trajectory chunk of the right format
+
         Parameters
         ----------
         file:
@@ -175,6 +180,7 @@ class TabularTextFileProcessor(mdsuite.file_io.file_read.FileProcessor):
             Number of header lines PER CONFIG
         -------
             The chunk for your reader output.
+
         """
         species_list = self.metadata.species_list
         chunk = mdsuite.database.simulation_database.TrajectoryChunkData(
@@ -224,9 +230,11 @@ def read_n_lines(file, n_lines: int, start_at: int = None) -> list:
     """
     Get n_lines lines, starting at line number start_at.
     If start_at is None, read from the current file state
+
     Returns
     -------
     A list of strings, one string for each line.
+
     """
     if start_at is not None:
         file.seek(0)
@@ -236,7 +244,8 @@ def read_n_lines(file, n_lines: int, start_at: int = None) -> list:
 
 def skip_n_lines(file, n_lines: int) -> None:
     """
-    skip n_lines in file
+    Skip n_lines in file
+
     Parameters
     ----------
     file: the file where we skip lines
@@ -245,6 +254,7 @@ def skip_n_lines(file, n_lines: int) -> None:
     Returns
     -------
         Nothing
+
     """
     for _ in range(n_lines):
         next(file)

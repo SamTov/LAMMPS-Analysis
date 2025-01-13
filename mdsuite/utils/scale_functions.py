@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import numpy as np
 
 
@@ -43,6 +44,7 @@ def linear_scale_function(memory_usage: int, scale_factor: int = 1) -> int:
     -------
     scaled_memory : int
             Amount of memory required per configuration loaded.
+
     """
     return memory_usage * scale_factor
 
@@ -63,6 +65,7 @@ def linearithmic_scale_function(memory_usage: int, scale_factor: int = 1) -> flo
     -------
     scaled_memory : float
             Amount of memory required per configuration loaded.
+
     """
     return scale_factor * memory_usage * np.log(memory_usage)
 
@@ -81,10 +84,12 @@ def quadratic_scale_function(
             Scalar scaling factor for the inner multiplication
     outer_scale_factor : int
             Scalar scaling factor for the outer multiplication
+
     Returns
     -------
     scaled_memory : int
             Amount of memory required per configuration loaded.
+
     """
     return outer_scale_factor * (memory_usage * inner_scale_factor) ** 2
 
@@ -113,5 +118,6 @@ def polynomial_scale_function(
     -------
     scaled_memory : int
             Amount of memory required per configuration loaded.
+
     """
     return outer_scale_factor * (memory_usage * inner_scale_factor) ** order

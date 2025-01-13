@@ -62,6 +62,7 @@ def is_jsonable(x: dict) -> bool:
     Returns
     -------
     bool: Whether the dict was serializable or not.
+
     """
     try:
         json.dumps(x)
@@ -107,6 +108,7 @@ def get_dimensionality(box: list) -> int:
     dimensions : int
             dimension of the box i.e, 1 or 2 or 3 (Higher dimensions probably don't
             make sense just yet)
+
     """
     # Check if the x, y, or z entries are empty, i.e. 2 dimensions
     if box[0] == 0 or box[1] == 0 or box[2] == 0:
@@ -137,6 +139,7 @@ def get_machine_properties() -> dict:
     -------
     machine_properties : dict
             A dictionary containing information about the hardware being used.
+
     """
     machine_properties = {}
     available_memory = psutil.virtual_memory().available  # RAM available
@@ -175,6 +178,7 @@ def line_counter(filename: str) -> int:
     -------
     lines : int
             Number of lines in the file
+
     """
     f = open(filename, "rb")
     num_lines = sum(1 for _ in f)
@@ -213,6 +217,7 @@ def optimize_batch_size(
     -------
     batch size : int
             Number of configurations to load in each batch
+
     """
     if test:
         file_size = _file_size
@@ -259,6 +264,7 @@ def linear_fitting_function(x: np.array, a: float, b: float) -> np.array:
     -------
     a*x + b : float
             Returns the evaluation of a linear function.
+
     """
     return a * x + b
 
@@ -280,6 +286,7 @@ def simple_file_read(filename: str) -> list:
     -------
     data_array: list
             Data read in by the function.
+
     """
     data_array = []  # define empty tensor_values array
     with open(filename, "r+") as f:  # Open the file for reading
@@ -309,6 +316,7 @@ def timeit(f: Callable) -> Callable:
     -----
     There is currently no test for this wrapper as there is no simple way of checking
     timing on a remote server.
+
     """
 
     @wraps(f)
@@ -351,6 +359,7 @@ def apply_savgol_filter(
     -----
     There are no tests for this method as a test would simply be testing the scipy
     implementation which they have done.
+
     """
     return savgol_filter(data, window_length, order)
 
@@ -408,6 +417,7 @@ def golden_section_search(
     -------
     minimum range : tuple
             Returns two radii values within which the minimum can be found.
+
     """
     # Define the golden ratio identities
     phi_a = 1 / golden_ratio
@@ -455,6 +465,7 @@ def get_nearest_divisor(a: int, b: int) -> int:
     -------
     divisor : int
             nearest number to a that divides into b evenly.
+
     """
     remainder = 1  # initialize a remainder
     a += 1
@@ -467,7 +478,8 @@ def get_nearest_divisor(a: int, b: int) -> int:
 
 def split_array(data: np.array, condition: np.array) -> list:
     """
-    split an array by a condition
+    Split an array by a condition
+
     Parameters
     ----------
     data : np.array
@@ -479,6 +491,7 @@ def split_array(data: np.array, condition: np.array) -> list:
     -------
     split_array : list
             A list of split up arrays.
+
     """
     initial_split = [data[condition], data[~condition]]  # attempt to split the array
 
@@ -506,6 +519,7 @@ def find_item(obj, key):
     item: dict value.
         returns the value for the given key. Return type may change depending on the
         requested key
+
     """
     if key in obj:
         return obj[key]

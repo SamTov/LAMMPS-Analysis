@@ -25,6 +25,7 @@ Summary
 -------
 Module for computing distinct diffusion coefficients using the Einstein method.
 """
+
 import itertools
 import warnings
 from dataclasses import dataclass
@@ -85,6 +86,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
     experiment.run_computation.EinsteinDistinctDiffusionCoefficients(data_range=500,
                                                                      plot=True,
                                                                      correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -95,6 +97,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         super().__init__(**kwargs)
 
@@ -199,6 +202,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
 
             Returns
             -------
+
             """
 
             def test_conf_map(test_dataset):
@@ -210,6 +214,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
                 test_dataset
                 Returns
                 -------.
+
                 """
                 return msd_operation(ref_dataset, test_dataset)
 
@@ -230,6 +235,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
 
         Returns
         -------
+
         """
         atomwise_vmap = jax.vmap(msd_operation, in_axes=0)
 
@@ -251,6 +257,7 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
         Returns
         -------
         updates the class state
+
         """
         msd_array = self._map_over_particles(
             data[data_path[0]].numpy(), data[data_path[1]].numpy()
@@ -271,12 +278,13 @@ class EinsteinDistinctDiffusionCoefficients(TrajectoryCalculator):
         Returns
         -------
         averaged copy of the tensor_values.
+
         """
         self.msd_array /= int(self.n_batches) * self.ensemble_loop
 
     def _post_operation_processes(self, species: Union[str, tuple] = None):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

@@ -21,6 +21,7 @@ Citation
 --------
 If you use this module please cite us with:
 """
+
 import os
 
 import numpy as np
@@ -67,7 +68,7 @@ def load_pos_into_exp(exp, sp_name="test_species", unwrapped=True):
 
 def test_automatic_coordinate_unwrapping(tmp_path):
     """
-    check if positions are automatically unwrapped if needed in another transformation.
+    Check if positions are automatically unwrapped if needed in another transformation.
     This also tests the fallback mechanism in case the first trafo (unwrap_via_indices)
     does not work.
     """
@@ -174,7 +175,7 @@ def test_save_to_correct_name(tmp_path):
 
 def test_data_from_species_and_experiment(tmp_path):
     """
-    test trafo that takes positions time dependent, charge from the species,
+    Test trafo that takes positions time dependent, charge from the species,
     and box_l from the experiment.
     """
     os.chdir(tmp_path)

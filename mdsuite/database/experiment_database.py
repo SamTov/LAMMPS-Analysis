@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 from __future__ import annotations
 
 import dataclasses
@@ -49,6 +50,7 @@ class LazyProperty:
     References
     ----------
     https://realpython.com/python-descriptors/
+
     """
 
     def __set_name__(self, owner, name):
@@ -110,6 +112,7 @@ class ExperimentDatabase:
         -------
         output : list
                 A list of rows represented as dictionaries.
+
         """
         raise DeprecationWarning(
             "This function has been removed and replaced by queue_database"
@@ -124,6 +127,7 @@ class ExperimentDatabase:
             Name of the database entry
         value:
             Any serializeable data type that can be written to the database
+
         """
         with self.project.session as ses:
             experiment = get_or_create(ses, db.Experiment, name=self.name)
@@ -155,6 +159,7 @@ class ExperimentDatabase:
         -----
         Internally the values will be converted to dict, so e.g. tuples or sets
          might be converted to lists
+
         """
         with self.project.session as ses:
             experiment = get_or_create(ses, db.Experiment, name=self.name)
@@ -200,6 +205,7 @@ class ExperimentDatabase:
         -------
         dict[str, SpeciesInfo]:
             A dictionary of species such as {Li: SpeciesInfo}
+
         """
         if self._species is None:
             with self.project.session as ses:
@@ -223,6 +229,7 @@ class ExperimentDatabase:
         ----------
         value: dict
             A dictionary of {element: SpeciesInfo}
+
         """
         if value is None:
             return

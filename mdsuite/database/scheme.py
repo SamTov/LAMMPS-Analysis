@@ -24,6 +24,7 @@ If you use this module please cite us with:
 Summary
 -------
 """
+
 import logging
 
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
@@ -102,6 +103,7 @@ class Experiment(Base):
         -------
         information : str
                 Experiment number and name as an fstring
+
         """
         return f"{self.id}: {self.name}"
 
@@ -144,6 +146,7 @@ class ExperimentAttribute(Base):
             numeric value of the property.
     str_value : str
             String value of the property.
+
     """
 
     __tablename__ = "experiment_attributes"
@@ -219,6 +222,7 @@ class Computation(Base):
         -------
         information : str
                 Experiment number and name as an fstring
+
         """
         return f"Exp{self.experiment_id}_{self.name}_{self.id}"
 
@@ -319,6 +323,7 @@ class Computation(Base):
             "molecules": false,
             "version": 1
         }
+
         """
         computation_parameter = {}
         for comp_attr in self.computation_attributes:

@@ -25,6 +25,7 @@ Summary
 -------
 MDSuite module for the computation of ionic conductivity using the Einstein method.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -64,6 +65,7 @@ class EinsteinHelfandIonicConductivity(TrajectoryCalculator, ABC):
     experiment.run_computation.EinsteinHelfandTIonicConductivity(data_range=500,
                                                                  plot=True,
                                                                  correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -74,6 +76,7 @@ class EinsteinHelfandIonicConductivity(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
             Experiment class to call from
+
         """
         # parse to the experiment class
         super().__init__(**kwargs)
@@ -112,6 +115,7 @@ class EinsteinHelfandIonicConductivity(TrajectoryCalculator, ABC):
                 Number of configurations to use in each ensemble
         correlation_time : int
                 Correlation time to use in the analysis.
+
         """
         if fit_range == -1:
             fit_range = int(data_range - 1)
@@ -173,6 +177,7 @@ class EinsteinHelfandIonicConductivity(TrajectoryCalculator, ABC):
         Returns
         -------
         MSD of the tensor_values.
+
         """
         msd = tf.math.squared_difference(
             tf.gather(ensemble, self.args.tau_values, axis=1), ensemble[:, 0, :]
@@ -182,7 +187,7 @@ class EinsteinHelfandIonicConductivity(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

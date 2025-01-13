@@ -28,6 +28,7 @@ Green-Kubo relation. Ionic conductivity describes how well a system can conduct 
 electrical charge due to the mobility of the ions contained within it. This differs
 from electronic conductivity which is transferred by electrons.
 """
+
 from abc import ABC
 from dataclasses import dataclass
 
@@ -83,6 +84,7 @@ class GreenKuboIonicConductivity(TrajectoryCalculator, ABC):
     --------
     experiment.run_computation.GreenKuboIonicConductivity(data_range=500,
     plot=True, correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -92,6 +94,7 @@ class GreenKuboIonicConductivity(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         # update experiment class
         super().__init__(**kwargs)
@@ -131,6 +134,7 @@ class GreenKuboIonicConductivity(TrajectoryCalculator, ABC):
                 Correlation time to use in the window sampling.
         integration_range : int
                 Range over which integration should be performed.
+
         """
         self.plot = plot
         self.jacf: np.ndarray
@@ -197,6 +201,7 @@ class GreenKuboIonicConductivity(TrajectoryCalculator, ABC):
         Returns
         -------
         ACF of the tensor_values.
+
         """
         ensemble = tf.gather(ensemble, self.args.tau_values, axis=1)
         jacf = tfp.stats.auto_correlation(ensemble, normalize=False, axis=1, center=False)
@@ -207,7 +212,7 @@ class GreenKuboIonicConductivity(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 

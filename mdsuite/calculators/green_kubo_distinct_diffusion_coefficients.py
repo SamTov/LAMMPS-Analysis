@@ -25,6 +25,7 @@ Summary
 -------
 Module for computing distinct diffusion coefficients using the Green-Kubo method.
 """
+
 import itertools
 from abc import ABC
 from dataclasses import dataclass
@@ -58,6 +59,7 @@ class Args:
 class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
     """
     Class for the Green-Kubo diffusion coefficient implementation
+
     Attributes
     ----------
     experiment :  object
@@ -79,6 +81,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
     --------
     experiment.run_computation.GreenKuboDistinctDiffusionCoefficients(data_range=500,
     plot=True, correlation_time=10)
+
     """
 
     def __init__(self, **kwargs):
@@ -89,6 +92,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
         ----------
         experiment :  object
                 Experiment class to call from
+
         """
         super().__init__(**kwargs)
 
@@ -142,6 +146,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
                 If true, export the data directly into a csv file.
         integration_range : int
                 Range over which to perform the integration.
+
         """
         if integration_range is None:
             integration_range = data_range
@@ -184,6 +189,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
         Returns
         -------
         -------.
+
         """
         atomwise_vmap = jax.vmap(correlate, in_axes=0)
 
@@ -212,11 +218,13 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
         def ref_conf_map(ref_dataset, full_ds):
             """
             Maps over the atoms axis in dataset
+
             Parameters
             ----------
             dataset
             Returns
             -------.
+
             """
 
             def test_conf_map(test_dataset):
@@ -228,6 +236,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
                 test_dataset
                 Returns
                 -------.
+
                 """
                 return correlate(ref_dataset, test_dataset)
 
@@ -254,6 +263,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
         Returns
         -------
         updates the class state
+
         """
         vacf = self._map_over_particles(
             data[dict_ref[0]].numpy(), data[dict_ref[1]].numpy()
@@ -296,7 +306,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
 
     def _calculate_prefactor(self, species: Union[str, tuple] = None):
         """
-        calculate the calculator pre-factor.
+        Calculate the calculator pre-factor.
 
         Parameters
         ----------
@@ -324,7 +334,7 @@ class GreenKuboDistinctDiffusionCoefficients(TrajectoryCalculator, ABC):
 
     def _post_operation_processes(self, species: Union[str, tuple] = None):
         """
-        call the post-op processes
+        Call the post-op processes
         Returns
         -------.
 
